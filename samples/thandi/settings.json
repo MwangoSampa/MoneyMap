@@ -1,0 +1,14 @@
+{
+  "failed": 0,
+  "locked_until": 0,
+  "version": 1,
+  "pin_salt": "GaRxXjbY8Xpb9kWjblcVjg==",
+  "pin_hash": "HEwcibI+F0ws17OOg+xma9Le16pkiAiq+O1QzTgqjHY=",
+  "kek_salt": "YNzUhi8lyvI43L5ClLBXkw==",
+  "wrapped_key": "wXOnpIPviVg7viVOUtzBLJbS/r7IZGJuKW7SaPj46ffy4tzmeVZeZ2TOBG1KGZ/K6DPbOyAPY8d1iTGY",
+  "kdf": {
+    "n": 16384,
+    "r": 8,
+    "p": 1
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+      "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/*.bak": true
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "MoneyMap (run app)",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal"
+      },
+      {
+        "name": "MoneyMap (debug prints on)",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "env": {
+          "MONEYMAP_DEBUG": "1"
+        }
+      },
+      {
+        "name": "Test user: thandi",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "args": [
+          "--profile",
+          "thandi"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "preLaunchTask": "MoneyMap: create sample test users"
+      },
+      {
+        "name": "Test user: sipho",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "args": [
+          "--profile",
+          "sipho"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "preLaunchTask": "MoneyMap: create sample test users"
+      },
+      {
+        "name": "Test user: grace",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "args": [
+          "--profile",
+          "grace"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "preLaunchTask": "MoneyMap: create sample test users"
+      },
+      {
+        "name": "Test user: newuser",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "args": [
+          "--profile",
+          "newuser"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "preLaunchTask": "MoneyMap: create sample test users"
+      },
+      {
+        "name": "MoneyMap tests",
+        "type": "debugpy",
+        "request": "launch",
+        "module": "pytest",
+        "args": [
+          "-v"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Install requirements",
+        "type": "shell",
+        "command": "${command:python.interpreterPath} -m pip install -r requirements-dev.txt",
+        "problemMatcher": []
+      },
+      {
+        "label": "MoneyMap: create sample test users",
+        "type": "shell",
+        "command": "${command:python.interpreterPath} tools/sample_users.py",
+        "problemMatcher": []
+      },
+      {
+        "label": "MoneyMap: load demo data",
+        "type": "shell",
+        "command": "${command:python.interpreterPath} tools/demo_data.py --force",
+        "problemMatcher": []
+      },
+      {
+        "label": "Run tests",
+        "type": "shell",
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "command": "${command:python.interpreterPath} -m pytest -v",
+        "problemMatcher": []
+      },
+      {
+        "label": "Security scan (Bandit)",
+        "type": "shell",
+        "command": "${command:python.interpreterPath} -m bandit -r . -x ./tests,./.venv",
+        "problemMatcher": []
+      },
+      {
+        "label": "Dependency scan (pip-audit)",
+        "type": "shell",
+        "command": "${command:python.interpreterPath} -m pip_audit -r requirements.txt",
+        "problemMatcher": []
+      }
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.debugpy"
+    ]
+  }
+}
