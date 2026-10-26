@@ -1,0 +1,9 @@
+# personal money data - never commit
+data/*.json
+data/*.bak
+data/*.tmp
+*.bak
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
